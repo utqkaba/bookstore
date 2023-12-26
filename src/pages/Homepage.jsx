@@ -1,3 +1,4 @@
+import BookList from "../components/Booklist"
 import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Search from "../components/Search"
@@ -7,6 +8,7 @@ export default function App() {
     <div>
       <Navbar />
       <Search />
+      <BookList />
       <Footer />
     </div>
   )

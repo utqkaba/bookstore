@@ -1,12 +1,15 @@
-import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
+import Footer from "../components/Footer"
 
-export default function App() {
+function Checkout() {
   return (
     <div>
       <Navbar />
-      <p>Checkout Page</p>
+      <p>Checkout</p>
       <Footer />
     </div>
+
   )
 }
+
+export default Checkout
