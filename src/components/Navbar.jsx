@@ -1,15 +1,18 @@
 import { GiBookshelf, GiShoppingCart } from "react-icons/gi";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <nav className="bg-gray-900 px-4 flex justify-between items-center">
       <div className="flex items-center p-2 mx-12">
         <GiBookshelf color="white" size="2em" />
-        <a to="/" className="text-white font-extralight text-lg mx-2 p-2">BOOKSTORE </a>
+        <Link to="/" className="flex items-center text-white font-extralight text-lg p-2 mx-2 hover:scale-110 duration-500">
+          BOOKSTORE
+        </Link>
       </div>
-      <div className="flex items-center p-2 mx-4">
+      <Link to="/Checkout" className="flex items-center p-2 mx-4 hover:scale-110 duration-500">
         <GiShoppingCart color="white" size="2em" />
-      </div>
+      </Link>
     </nav>
   );
 };
