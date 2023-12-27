@@ -10,7 +10,7 @@ const Navbar = () => {
           BOOKSTORE
         </Link>
       </div>
-      <Link to="/Checkout" className="flex items-center p-2 mx-4 hover:scale-110 duration-500">
+      <Link to="/Basket" className="flex items-center p-2 mx-4 hover:scale-110 duration-500">
         <GiShoppingCart color="white" size="2em" />
       </Link>
     </nav>
