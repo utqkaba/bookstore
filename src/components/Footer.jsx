@@ -1,5 +1,3 @@
-// src/components/Footer.js
-
 const Footer = () => {
   return (
     <footer className="bg-gray-900 p-4 text-white text-center bottom-0 w-full font-extralight text-sm">
