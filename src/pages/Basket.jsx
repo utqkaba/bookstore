@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 function Basket() {
   return (
-    <div>
+    <div className="bg-gray-100">
       <Navbar />
       <p>Sepete eklenen urunler</p>
       <button>onay verilirse odeme sayfasina gecicek</button>

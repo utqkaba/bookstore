@@ -14,7 +14,6 @@ export default function App() {
         <Route path="/Checkout" element={<Checkout />} />
         <Route path="/Details" element={<Details />} />
         <Route path="/Success" element={<Success />} />
-
       </Routes>
     </Router>
   )

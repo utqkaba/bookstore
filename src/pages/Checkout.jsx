@@ -40,10 +40,10 @@ function CheckoutForm() {
   };
 
   return (
-    <div>
+    <div className="bg-gray-100">
       <Navbar />
 
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto my-8 p-6 bg-gray-100 shadow-2xl rounded-md">
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto my-8 p-6 bg-white shadow-2xl rounded-md">
         <p className="text-center text-3xl font-extralight p-2 mb-6 border-b border-gray-800 ">Personal & Payment Information</p>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-700">Name</label>
