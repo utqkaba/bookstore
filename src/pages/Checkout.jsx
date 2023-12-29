@@ -42,7 +42,8 @@ function CheckoutForm() {
   return (
     <div>
       <Navbar />
-      <form onSubmit={handleSubmit} className="max-w-md mx-auto my-16 p-6 bg-gray-100 shadow-2xl rounded-md">
+
+      <form onSubmit={handleSubmit} className="max-w-md mx-auto my-8 p-6 bg-gray-100 shadow-2xl rounded-md">
         <p className="text-center text-3xl font-extralight p-2 mb-6 border-b border-gray-800 ">Personal & Payment Information</p>
         <div className="mb-4">
           <label htmlFor="firstName" className="block text-gray-700">Name</label>
@@ -93,13 +94,13 @@ function CheckoutForm() {
           />
         </div>
         <div className="mb-4">
-          <label className="block text-gray-700">
+          <label className="block text-gray-700 font-extralight text-sm">
             <input
               type="checkbox"
               name="isConfirmed"
               checked={formData.isConfirmed}
               onChange={handleChange}
-              className="mr-2"
+              className="mr-2 ml-1 border border-gray-800 rounded-md"
             />
             Approve
           </label>
