@@ -24,8 +24,8 @@ const BookList = () => {
 
         if (thumbnail != undefined && amount != undefined) {
           return (
-            <div key={index} className="border p-4 font-extralight rounded-md bg-white">
-              <img className="h-44 w-36 mx-auto mb-4" src={thumbnail} alt={item.volumeInfo.title} />
+            <div key={index} className="border p-4 font-extralight rounded-md bg-white shadow-2xl">
+              <img className="h-44 w-30 mx-auto mb-4" src={thumbnail} alt={item.volumeInfo.title} />
               <p className="text-3xl font-lights text-center">{item.volumeInfo.title}</p>
               <p><strong>Authors:</strong> {authors == null ? "Unknown" : authors}</p>
               <p><strong>Price:</strong> ${amount}</p>
@@ -39,8 +39,16 @@ const BookList = () => {
               </div>
             </div>
           )
-        }
-        return null; // handle cases where thumbnail or amount is undefined
+        } else
+          // handle cases where thumbnail or amount is undefined
+          return (
+            <div className="flex items-center justify-center h-screen bg-gray-100">
+              <div className="text-center">
+                <h1 className="text-4xl font-bold mb-4">404 Not Found</h1>
+                <p className="text-gray-600">The page you are looking for might not exist.</p>
+              </div>
+            </div>
+          )
       })}
     </div>
   );
