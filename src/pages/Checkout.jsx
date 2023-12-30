@@ -49,8 +49,8 @@ function CheckoutForm() {
     <div className="bg-gray-100">
       <Navbar />
 
-      <p className="text-center text-3xl font-extralight p-2 mb-6 border-b ">Personal & Payment Information</p>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 w-1/2 mx-auto my-8 p-8 bg-white shadow-2xl rounded-md font-extralight">
+      <p className="text-center text-4xl font-extralight p-2 my-6">Personal & Payment Information</p>
+      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 w-1/2 mx-auto my-8 mb-20 p-8 bg-white shadow-2xl rounded-md font-extralight">
         {/* personal information */}
         <section className="p-4 mr-2">
           <div className="mb-4 px-2">
@@ -188,24 +188,23 @@ function CheckoutForm() {
           </address>
         </section>
         {/* approve and sumbit button */}
-        <section className="grid grid-rows-2">
-          <div className="mb-4 px-2">
-            <label className="block font-normal text-gray-700 text-sm">
+        <section className="col-span-2 text-center">
+          <div className="mb-4">
+            <label className="block text-gray-700">
               <input
                 type="checkbox"
+                id="isConfirmed"
                 name="isConfirmed"
                 checked={formData.isConfirmed}
                 onChange={handleChange}
-                className="mr-2 ml-1 border border-gray-800 rounded-md"
+                className="mr-2"
               />
-              Approve
+              I confirm the accuracy of the information.
             </label>
           </div>
-          <div className="flex justify-center">
-            <Link to="/Success" className={`bg-green-700 text-white p-2 rounded-md hover:bg-green-600 hover:scale-110 duration-500 ${isButtonDisabled() ? 'pointer-events-none opacity-50' : ''}`} disabled={isButtonDisabled()}>
-              Complete the Payment
-            </Link>
-          </div>
+          <Link to="/Success" className={`bg-green-700 text-white p-2 rounded-md hover:bg-green-600 hover:scale-110 duration-500 ${isButtonDisabled() ? 'pointer-events-none opacity-50' : ''}`} disabled={isButtonDisabled()}>
+            Complete the Payment
+          </Link>
         </section>
       </form>
       <Footer />
