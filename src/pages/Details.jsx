@@ -3,11 +3,13 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import { useCart } from '../context/CardContext';
 
 const Details = () => {
   const [book, setBook] = useState({});
   const [error, setError] = useState('');
   const { id } = useParams();
+  const { addToCart } = useCart();
 
   useEffect(() => {
     axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`)
@@ -26,7 +28,7 @@ const Details = () => {
             </div>
             <div className="col-span-1 text-left bg-white p-10 py-18 shadow-2xl border rounded-lg grid place-items-center"> {/* Added grid properties */}
               <p className="text-3xl font-semibold p-2">{book.volumeInfo.title}</p>
-              <section className='p-2 font-extralight border-b'>
+              <section className='p-2 font-extralight border-t'>
                 <p className='py-1'><strong>Authors:</strong> {book.volumeInfo.authors == null ? "Unknown" : book.volumeInfo.authors}</p>
                 <p className='py-1'><strong>Publisher:</strong> {book.volumeInfo.publisher == null ? "Unknown" : book.volumeInfo.publisher}</p>
                 <p className='py-1'><strong>Published Date:</strong> {book.volumeInfo.publishedDate == null ? "Unknown" : book.volumeInfo.publishedDate}</p>
@@ -34,9 +36,6 @@ const Details = () => {
                 <p className='py-1'><strong>Price:</strong> ${book.saleInfo.listPrice.amount}</p>
                 <p className='py-1'><strong>Categories:</strong> {book.volumeInfo.categories == null ? "Unknown" : book.volumeInfo.categories}</p>
               </section>
-              <button className="bg-gray-800 text-white font-extralight px-8 py-2 mt-4 rounded-md hover:bg-gray-300 hover:text-gray-800 hover:scale-105 duration-500">
-                Add to Cart
-              </button>
             </div>
             <div className="col-span-2 text-justify bg-white p-10 py-18 shadow-2xl border rounded-lg grid place-items-center"> {/* Added grid properties */}
               <p className='py-1 px-6 font-extralight'><strong className='text-xl'>Description:</strong> {book.volumeInfo.description} </p>

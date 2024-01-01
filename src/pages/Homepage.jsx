@@ -3,15 +3,20 @@ import Footer from "../components/Footer"
 import Navbar from "../components/Navbar"
 import Search from "../components/Search"
 import PromoBar from "../components/PromoBar"
-// import BestSeller from "../components/BestSeller"
+import { useState } from 'react';
 
 export default function App() {
+  const [searchQuery, setSearchQuery] = useState('');
+
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
   return (
     <div className="bg-gray-100">
       <Navbar />
-      <Search />
+      <Search onSearch={handleSearch} />
       <PromoBar />
-      <BookList />
+      <BookList searchQuery={searchQuery} />
       <Footer />
     </div>
   )

@@ -12,10 +12,6 @@ function Basket() {
     return total + parseFloat(item.saleInfo.listPrice.amount);
   }, 0);
 
-  const totalProductsBill = cart.reduce((total, item) => {
-    return total + shipping - discounts + parseFloat(item.saleInfo.listPrice.amount);
-  }, 0);
-
   return (
     <div className="bg-gray-100">
       <Navbar />
@@ -38,7 +34,7 @@ function Basket() {
                 <p className="p-2"> {item.volumeInfo.title}</p>
                 <p className="p-2"> {item.volumeInfo.authors == null ? "Unknown" : item.volumeInfo.authors}</p>
                 <p className="p-2"> ${item.saleInfo.listPrice.amount}</p>
-                <p className="p-2">1</p>
+                <p className="p-2"> 1 </p>
               </div>
             ))}
           </div>
@@ -63,7 +59,7 @@ function Basket() {
               <li>Total:</li>
             </ul>
             <ul className="text-right font-medium text-xl p-2 border-t">
-              <li>${totalProductsBill.toFixed(2)}</li>
+              <li>${totalProductsPrice.toFixed(2) - discounts + shipping}</li>
             </ul>
           </section>
         </section>
