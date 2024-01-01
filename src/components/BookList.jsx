@@ -24,8 +24,8 @@ const BookList = () => {
 
         if (thumbnail != undefined && amount != undefined) {
           return (
-            <div key={index} className="border p-4 font-extralight rounded-md bg-white shadow-2xl">
-              <img className="h-44 w-30 mx-auto mb-4" src={thumbnail} alt={item.volumeInfo.title} />
+            <div key={index} className="border p-4 font-extralight rounded-md bg-white shadow-2xl hover:border-gray-300 hover:border-2 hover:scale-105 duration-500">
+              <img className="h-36 w-28 mx-auto mb-4" src={thumbnail} alt={item.volumeInfo.title} />
               <p className="text-3xl font-lights text-center">{item.volumeInfo.title}</p>
               <p><strong>Authors:</strong> {authors == null ? "Unknown" : authors}</p>
               <p><strong>Price:</strong> ${amount}</p>

@@ -48,7 +48,6 @@ function CheckoutForm() {
   return (
     <div className="bg-gray-100">
       <Navbar />
-
       <p className="text-center text-4xl font-extralight p-2 my-6">Personal & Payment Information</p>
       <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 w-1/2 mx-auto my-8 mb-20 p-8 bg-white shadow-2xl rounded-md font-extralight">
         {/* personal information */}
