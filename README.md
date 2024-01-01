@@ -1,8 +1,23 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Online Bookstore
 
-Currently, two official plugins are available:
+This project is an online book website project. Homepage, book details, shopping card etc. keys were taken into consideration and a road map was created.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+# Follow the steps below to run the project in your local environment.
+
+
+```bash
+npm install
+```
+
+```bash
+npm run dev
+```
+Open [http://localhost:5173](http://localhost:5173) with your browser to see the result.
+
+# Tech Stack & API
+
+This project is made with React Js. Tailwind css is preferred as a visual library. 
+<p> Data is provided by Google Books API. </p>
+https://developers.google.com/books/docs/overview
+
