@@ -1,10 +1,10 @@
-// src/components/BookList.js
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
-// import BookCard from './BookCard';
+import { useCart } from '../context/CardContext';
 
 const BookList = () => {
+  const { addToCart } = useCart();
   const [books, setBooks] = useState([]);
 
   useEffect(() => {
@@ -24,18 +24,18 @@ const BookList = () => {
 
         if (thumbnail != undefined && amount != undefined) {
           return (
-            <div key={index} className="border p-4 font-extralight rounded-md bg-white shadow-2xl hover:border-gray-300 hover:border-2 hover:scale-105 duration-500">
+            <div key={index} className="border p-4 mx-1 font-extralight rounded-md bg-white shadow-2xl hover:border-gray-300 hover:border-2 hover:scale-105 duration-500">
               <img className="h-36 w-28 mx-auto mb-4" src={thumbnail} alt={item.volumeInfo.title} />
               <p className="text-3xl font-lights text-center">{item.volumeInfo.title}</p>
               <p><strong>Authors:</strong> {authors == null ? "Unknown" : authors}</p>
               <p><strong>Price:</strong> ${amount}</p>
               <div className='grid grid-cols-2 align-bottom text-center mt-4 gap-4'>
-                <Link to="/Details" className="bg-gray-800 text-white font-extralight px-4 py-2 rounded-md hover:bg-gray-300 hover:text-gray-800 hover:scale-105 duration-500">
+                <Link to={`/Details/${item.id}`} className="bg-gray-800 text-white font-extralight px-4 py-2 rounded-md hover:bg-gray-300 hover:text-gray-800 hover:scale-105 duration-500">
                   Details
                 </Link>
-                <Link to="/Details" className="bg-gray-300 text-gray-800 font-extralight px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white hover:scale-105 duration-500">
-                  Buy
-                </Link>
+                <button onClick={() => addToCart(item)} className="bg-gray-300 text-gray-800 font-extralight px-4 py-2 rounded-md hover:bg-gray-800 hover:text-white hover:scale-105 duration-500">
+                  Add to Cart
+                </button>
               </div>
             </div>
           )

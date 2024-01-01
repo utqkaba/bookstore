@@ -1,63 +1,48 @@
-import Navbar from "../components/Navbar"
-import Footer from "../components/Footer"
 import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 const Details = () => {
-  const [books, setBooks] = useState([]);
-  // secilen kitabin idsi prop olarak gelicek ona gore istek aticaz. 
-  // const [books, setBooks] = useState([]);
+  const [book, setBook] = useState({});
   const [error, setError] = useState('');
+  const { id } = useParams();
 
   useEffect(() => {
-    axios.get("https://www.googleapis.com/books/v1/volumes?q=react&filter=ebooks&key=AIzaSyBOYuYNIW3OSKWicmtfJ_UPfAAIlJdNFtE")
-      .then((response) => setBooks(response.data.items))
-      .catch(err => {
-        setError(err.message);
-      });
-  }, []);
-
-  // if (!book) {
-  //   return <div>Loading...</div>;
-  // }
+    axios.get(`https://www.googleapis.com/books/v1/volumes/${id}`)
+      .then(response => setBook(response.data))
+      .catch(err => setError(err.message));
+  }, [id]);
 
   return (
     <div>
       <Navbar />
-      <div className="flex flex-col items-center justify-center m-4 p-4">
-        {
-          books.map((item, index) => {
-            const thumbnail = item.volumeInfo.imageLinks && item.volumeInfo.imageLinks.smallThumbnail;
-            const amount = item.saleInfo.listPrice.amount;
-            const buyLink = item.saleInfo.buyLink;
-            const desc = item.volumeInfo.description;
-            const authors = item.volumeInfo.authors;
-            const pageCount = item.volumeInfo.pageCount;
-            const categories = item.volumeInfo.categories;
-            const publisher = item.volumeInfo.publisher;
-            const publishedDate = item.volumeInfo.publishedDate;
-
-            if (thumbnail != undefined && amount != undefined) {
-              return (
-                <div key={index}>
-                  <img className="h-64 w-64" src={thumbnail} alt={item.volumeInfo.title} />
-                  <div className="border-4 font-extralight border-red-500 p-4 m-4">
-                    <p className="text-3xl font-lights"> {item.volumeInfo.title} </p>
-                    <p> <strong>Authors:</strong> {authors == null ? "Unknown" : authors} </p>
-                    <p> <strong>Publisher:</strong> {publisher == null ? "Unknown" : publisher} </p>
-                    <p> <strong>Published Date:</strong> {publishedDate == null ? "Unknown" : publishedDate} </p>
-                    <p> <strong>Page Count:</strong> {pageCount == null ? "Unknown" : pageCount} </p>
-                    <p> <strong>Categories:</strong> {categories == null ? "Unknown" : categories} </p>
-                    <p> <strong>Price:</strong> ${amount} </p>
-                    <a href={buyLink} target="_blank" rel="noreferrer"> <strong>Buy Link:</strong> {buyLink} </a>
-                    <p> <strong>Description:</strong> {desc} </p>
-                  </div>
-                </div>
-              )
-            }
-
-          })
-        }
+      <div className="grid grid-cols-2 gap-4 m-4 p-4">
+        {book.volumeInfo && (
+          <>
+            <div className="col-span-1 grid place-items-center">
+              <img className="h-96 w-72" src={book.volumeInfo.imageLinks.medium} alt={book.volumeInfo.title} />
+            </div>
+            <div className="col-span-1 text-left bg-white p-10 py-18 shadow-2xl border rounded-lg grid place-items-center"> {/* Added grid properties */}
+              <p className="text-3xl font-semibold p-2">{book.volumeInfo.title}</p>
+              <section className='p-2 font-extralight border-b'>
+                <p className='py-1'><strong>Authors:</strong> {book.volumeInfo.authors == null ? "Unknown" : book.volumeInfo.authors}</p>
+                <p className='py-1'><strong>Publisher:</strong> {book.volumeInfo.publisher == null ? "Unknown" : book.volumeInfo.publisher}</p>
+                <p className='py-1'><strong>Published Date:</strong> {book.volumeInfo.publishedDate == null ? "Unknown" : book.volumeInfo.publishedDate}</p>
+                <p className='py-1'><strong>Page Count:</strong> {book.volumeInfo.pageCount == null ? "Unknown" : book.volumeInfo.pageCount}</p>
+                <p className='py-1'><strong>Price:</strong> ${book.saleInfo.listPrice.amount}</p>
+                <p className='py-1'><strong>Categories:</strong> {book.volumeInfo.categories == null ? "Unknown" : book.volumeInfo.categories}</p>
+              </section>
+              <button className="bg-gray-800 text-white font-extralight px-8 py-2 mt-4 rounded-md hover:bg-gray-300 hover:text-gray-800 hover:scale-105 duration-500">
+                Add to Cart
+              </button>
+            </div>
+            <div className="col-span-2 text-justify bg-white p-10 py-18 shadow-2xl border rounded-lg grid place-items-center"> {/* Added grid properties */}
+              <p className='py-1 px-6 font-extralight'><strong className='text-xl'>Description:</strong> {book.volumeInfo.description} </p>
+            </div>
+          </>
+        )}
       </div>
       <Footer />
     </div>
